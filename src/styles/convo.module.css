@@ -1,0 +1,100 @@
+.conversationalAnalytics {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  }
+  
+  .sectionHeader {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Darker text color */
+  }
+  
+  .sectionHeader p {
+    font-size: 16px;
+    color: #666; /* Slightly lighter text color */
+  }
+  
+  .contentWrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .chartContainer {
+    flex: 0 0 45%; /* Chart takes up more space */
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .metricsGrid {
+    flex: 0 0 35%; /* Metrics take up less space */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .metricCard {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center; /* Center align text in metric cards */
+  }
+  
+  .metricTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .metricValue {
+    font-size: 24px;
+    font-weight: bold;
+    color: #EB5A3C; /* Use the primary color for metric values */
+  }
+
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Responsive grid */
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    /* Default height for chart cards */
+    min-height: 400px; 
+  }
+  
+  .smallCard {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    /* Reduced height for metric cards */
+    min-height: 200px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+  }
+
+  /* ... other styles ... */
+
+.dataText {
+    font-size: 18px;
+    color: #333;
+    margin: 5px 0;
+  }

@@ -1,0 +1,41 @@
+.instructionContainer {
+    margin-left: 250px; /* Offset for sidebar */
+    width: calc(100% - 250px); /* Take the remaining width */
+    padding: 20px;
+    text-align: left;
+    margin-top: 30px; 
+    height: calc(100vh - 30px); 
+}
+
+.pageTitle {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.cardTitle {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+ol {
+    font-size: 1.1em;
+    margin-left: 20px;
+}
+
+ol li {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,157 @@
+.dashboardContainer {
+    display: flex;
+    min-height: 100vh;
+    height: auto;
+    background-color: white;
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    margin-top: 70px;
+  }
+  
+  .botSettingContainer {
+    width: 100%;
+  }
+  
+  .heading {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #343a40;
+    margin-left: 20px;
+  }
+  
+  .formContainer {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 1.5rem;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.75rem;
+    margin-left: -0.75rem;
+  }
+  
+  .column {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+  }
+  
+  .cardBody {
+    padding: 1.5rem;
+  }
+  
+  .cardTitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: #EB5A3C; /* Primary color - adjust as needed */
+  }
+  
+  .formGroup {
+    margin-bottom: 1.5rem;
+  }
+  
+  .formLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #6c757d; /* Secondary color - adjust as needed */
+  }
+  
+  .required {
+    color: #dc3545; /* Danger color - adjust as needed */
+  }
+  
+  .formControl {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #6c757d; /* Secondary color - adjust as needed */
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .formControl:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  textarea.formControl {
+    height: auto;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .buttonPrimary {
+    background-color: #EB5A3C; /* Primary color - adjust as needed */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .buttonPrimary:hover {
+    background-color: #d69689;
+  }
+  
+  .buttonSecondary {
+    background-color: #EB5A3C; /* Secondary color - adjust as needed */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .buttonSecondary:hover {
+    background-color: #a0a6ab;
+  }
+  
+  .buttonSecondary:disabled {
+    background-color: #a0a6ab;
+    cursor: default;
+  }
+  
+  .statusMessage {
+    margin-top: 1rem;
+    text-align: center;
+    color: #28a745; /* Success color - adjust as needed */
+  }
+
+  .statusMessage p{
+    font-size: 1rem;
+  }

@@ -1,0 +1,152 @@
+.main-container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F4F6FF;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    margin-top: 70px;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+    text-align: left;
+    padding: 20px;
+}
+
+.heading1 {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+    border-radius: 0;
+    margin-left: 5%;
+}
+
+
+.scroll {
+    background-color: #F4F6FF;
+    width: 100%;
+}
+
+/* First div setup */
+.first-div {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    justify-content: center;
+}
+
+.second-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.image {
+    width: 450px;
+    height: 450px;
+}
+
+
+.vertical-div {
+    width: 100%;
+}
+
+
+.genai {
+    font-weight: 900;
+    background: linear-gradient(270deg, rgb(214, 39, 39) 0%, rgba(220, 128, 58, 0.88) 35%, rgb(224, 32, 32) 100%);
+    background-size: 200% 200%; 
+    animation: gradient-move 3s linear infinite; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    font-size: 3rem;
+}
+
+.iframe-responsive
+{
+    background-color: transparent;
+    width: 40%;
+    height: 85vh;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 99;
+}
+
+@media screen and (max-width: 1200px)
+{
+    .iframe-responsive 
+    {
+        width: 60%;
+        height: 90vh;
+    }
+}
+
+@media screen and (max-width: 800px)
+{
+    .iframe-responsive 
+    {
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width: 550px)
+{
+    .iframe-responsive 
+    {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 550px)
+{
+    .iframe-responsive 
+    {
+        width: 100%;
+    }
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+
+.heading2 {
+    font-size: 18px;
+}
+
+
+@media (max-width: 768px) { 
+    .second-div .image {
+        display: none; 
+    }
+}
+
+
+
+

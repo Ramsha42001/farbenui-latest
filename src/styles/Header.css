@@ -1,0 +1,222 @@
+body {
+    font-family: Manrope, sans-serif !important;
+    font-size: 18px !important;
+    margin: 0;
+}
+
+.top-header-container .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0px;
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+.logo-brand-container {
+    display: flex;
+    align-items: center;
+}
+
+#navbarSupportedContent {
+    /* display: flex; */
+    /* justify-content:  space-between; */
+    /* background-color: #34495e; */
+    width: 100%;
+}
+
+.navbar {
+    height: 80px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    /* margin-right: 10px; */
+    font-size: 25px !important;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-grow: 1;
+    /* justify-content: flex-start; */
+}
+
+.nav-item {
+    margin: 0 15px;
+    position: relative;
+}
+
+.login-link {
+    /* margin-left: auto; */
+}
+
+.dropdown {
+    position: static !important;
+}
+
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.mega-menu {
+    display: none;
+    left: 0;
+    position: absolute;
+    width: 100% !important;
+    z-index: 100;
+}
+
+.button-header {
+    background-color: #34495e;
+    text-decoration: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 35px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.mega-menu .container {
+    margin-top: 0px !important;
+    width: 100% !important; 
+    /* margin: auto !important; */
+}
+
+.navbar-nav .dropdown-menu {
+    border: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+/* Ensure navbar items and login section stack correctly on mobile */
+@media (max-width: 992px) {
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+        background-color:rgb(251, 249, 249);;
+        display: block; /* Ensures items are visible */
+        padding-top: 10px;
+        z-index: 100;
+    }
+
+    .navbar-collapse {
+        position: relative;
+        background-color:rgb(251, 249, 249);;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    /* Move right-container below nav items */
+    .right-container {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        /*margin-top: 15px; /* Spacing for better visibility */
+    }
+
+    .message-profile-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    /* Adjust button styling on mobile */
+    .button-header {
+        width: 80%;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 25px;
+    }
+
+    /* Center welcome message */
+    .welcome-message {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .profile-icon {
+        height: 40px; /* Adjust size as needed */
+        margin-right: 5px;
+        width: 40px;
+    }
+}
+
+/* Even smaller screens adjustments */
+@media (max-width: 576px) {
+    .button-header {
+        width: 100%;
+        font-size: 14px;
+    }
+    .profile-icon {
+        height: 40; /* Adjust size as needed */
+        margin-right: 5px;
+        width: 40px;
+    }
+}
+
+
+.navbar {
+    transition: all 0.3s ease;
+}
+
+.navbar-collapse {
+    transition: height 0.35s ease;
+}
+
+.navbar-toggler {
+    cursor: pointer;
+    border: none;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.navbar-collapse {
+    transition: height 0.35s ease;
+}
+
+
+.header-welcome {
+    /* margin-right: !important;   */
+    padding: 0 !important;  
+}
+
+.welcome-message {
+    white-space: nowrap;
+    /* margin-right: 1rem;  */
+    font-size: 18px;
+    line-height: 1;
+}

@@ -1,0 +1,46 @@
+.integrationCard {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.integrationCard:hover {
+    transform: translateY(-5px);
+}
+
+.integrationIcon {
+    font-size: 50px; /* Adjusted size for icons */
+    /* color: #34495e;  */
+    color: var(--bs-primary);
+    margin-bottom: 10px;
+}
+
+.integrationName {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.integrationDescription {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.integrationButton {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #34495e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.integrationButton:hover {
+    background-color: #415d78;
+    color: white;
+}

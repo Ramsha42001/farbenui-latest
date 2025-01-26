@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.91961fda.css",
+    "main.js": "/static/js/main.02bdc886.js",
+    "static/js/453.c43d5d7f.chunk.js": "/static/js/453.c43d5d7f.chunk.js",
+    "static/media/bot.png": "/static/media/bot.e282637c3139a8394892.png",
+    "static/media/cartzilla-icons.svg?ufvuz0": "/static/media/cartzilla-icons.464ca4a7b5c80dace3a2.svg",
+    "static/media/chat.png": "/static/media/chat.df067fd7fa1366924d43.png",
+    "static/media/img-1.jpeg": "/static/media/img-1.bb224a98cb42099378f7.jpeg",
+    "static/media/cartzilla-icons.woff?ufvuz0": "/static/media/cartzilla-icons.a97b28747a2172384505.woff",
+    "static/media/cartzilla-icons.ttf?ufvuz0": "/static/media/cartzilla-icons.c8f13ddb953232df53b3.ttf",
+    "static/media/image.png": "/static/media/image.e2024187417b77ad47a9.png",
+    "static/media/farbenbg.png": "/static/media/farbenbg.ddd960fb07b91010bf2c.png",
+    "static/media/fai1.png": "/static/media/fai1.9f3a7af4543e485daecc.png",
+    "index.html": "/index.html",
+    "main.91961fda.css.map": "/static/css/main.91961fda.css.map",
+    "main.02bdc886.js.map": "/static/js/main.02bdc886.js.map",
+    "453.c43d5d7f.chunk.js.map": "/static/js/453.c43d5d7f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.91961fda.css",
+    "static/js/main.02bdc886.js"
+  ]
+}

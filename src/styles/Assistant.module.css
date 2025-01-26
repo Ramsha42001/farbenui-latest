@@ -1,0 +1,44 @@
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+  
+  .header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; /* Center the header */
+  }
+  
+  .cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Responsive grid */
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .cardData {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .dataText {
+    font-size: 18px;
+    color: #333;
+    margin: 5px 0;
+  }

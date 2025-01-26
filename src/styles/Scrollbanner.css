@@ -1,0 +1,29 @@
+.parallax {
+    overflow-x: hidden;
+    white-space: nowrap; /* Ensure text stays on one line */
+    width: 100%; /* Set to viewport width to prevent overflow */
+    background-color: white;
+  }
+  
+  .scroller {
+    display: flex;
+    gap: 60px; /* Add spacing between items */
+    will-change: transform; /* Improve performance of motion */
+  }
+  
+  .scroller-banner {
+    position: relative;
+    padding: 0 0;
+    font-size: 30px; /* Adjust font size */
+    text-align: center;
+    font-weight: 700;
+    overflow: hidden; /* Ensure no scroll overflow occurs */
+    width: 100%; /* Make sure the banner covers the full width of the screen */
+  }
+  
+  .scroller span {
+    font-size: 24px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  

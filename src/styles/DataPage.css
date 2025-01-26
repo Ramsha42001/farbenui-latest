@@ -1,0 +1,55 @@
+/* Sidebar.css */
+/* .main-container {
+    display: flex;
+} */
+
+
+.submit-button{
+    background-color: #EB5A3C;
+    color: white;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+.content-container {
+    margin-left: 250px; /* Same as sidebar width */
+    width: calc(100% - 250px);
+    padding: 20px;
+    margin-top: 55px; 
+    /* height: calc(100vh - 30px);  */
+}
+
+.new-button {
+    background-color: #EB5A3C;
+    color: white;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.new-button:hover {
+    background-color: #eb8e7c;
+    color: white;
+}
+
+.load-doc-button{
+    background-color: #EB5A3C;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    font-size: 14px;
+}
+
+.load-doc-button:hover {
+    background-color: #eb8e7c;
+    color: white;
+}

@@ -1,0 +1,115 @@
+/* Reset for consistent styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Container for layout */
+  .container {
+    display: flex;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 240px; /* Always expanded width */
+    background-color: rgb(251, 249, 249);
+    padding-top: 10vh;
+    border-right: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Top section */
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+  }
+  
+  /* Logo and toggle button */
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+  }
+  
+  /* Link styles */
+  .link {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: black;
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    background-color: #EB5A3C;
+    color: #fff;
+  }
+  
+  /* Active link styling */
+  .active {
+    background-color: #EB5A3C;
+    color: white;
+  }
+  
+  /* Icon styles */
+  .icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+  }
+  
+  /* Link text */
+  .link-text {
+    font-size: 1.1rem; /* From your inline style */
+    white-space: nowrap;
+    opacity: 1; /* Always visible */
+  }
+  
+  /* Submenu styles */
+  .sub-menu { /* Indent the submenu */
+  }
+  
+  .sub-link {
+    padding: 5px 0;
+    padding-left: 25px;
+  }
+  
+  .sub-link .link-text{
+    font-size: 1rem;
+  }
+  
+  .sub-link:hover {
+    background-color: #EB5A3C;
+    color: #fff;
+  }
+  
+  /* Arrow icon styles */
+  .arrow-icon {
+    margin-left: auto; /* Push the arrow to the right */
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  
+  /* Main content styles */
+  main {
+    width: 100%;
+    padding: 20px;
+    margin-left: 250px; /* Adjust for the always visible sidebar width */
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 200px; /* Reduce width for smaller screens */
+    }
+  
+    main {
+      margin-left: 200px; /* Adjust for the smaller sidebar width */
+    }
+  }

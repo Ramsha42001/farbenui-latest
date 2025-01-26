@@ -1,0 +1,81 @@
+:root {
+    --bs-primary: var(--bs-orange) !important;
+  }
+
+.bot-setting-container {
+    /* width: 70%;
+    margin: 0 auto;
+    padding: 2rem; */
+
+    margin-left: 250px; /* Same as sidebar width */
+    width: calc(100% - 250px);
+    padding: 20px;
+
+    margin-top: 3%;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 8px; */
+    /* background-color: #f9f9f9; */
+}
+
+.required 
+{
+    color: red;
+}
+
+
+.bot-setting-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+
+/* .form-section {
+    display: flex;
+    flex-direction: column;
+} */
+
+/* .prompt-section {
+    display: flex;
+    flex-direction: column;
+} */
+
+.heading {
+    /* text-align: center; */
+    margin-bottom: 1.5rem;
+}
+
+.bot-form {
+    margin-bottom: 1.5rem;
+}
+
+.bot-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.bot-form-control {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea.form-control {
+    height: 400px;
+}
+
+.bot-form-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #34495e;
+    color: #fff;
+}
+
+.bot-form-btn:hover {
+    background-color: #636970;
+}
