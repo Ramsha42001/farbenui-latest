@@ -41,7 +41,7 @@ const BotSetting = () => {
   const fetchDocuments = async () => {
     if (token) {
       try {
-        const documentsResponse = await axios.get('http://localhost:8080/documents', {
+        const documentsResponse = await axios.get('https://farbenai-server-service-1087119049852.us-central1.run.app/documents', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -81,7 +81,7 @@ const BotSetting = () => {
 
     setParsingLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/parse', {
+      const response = await fetch('https://farbenai-server-service-1087119049852.us-central1.run.app/parse', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -111,7 +111,7 @@ const BotSetting = () => {
 
     setEmbeddingsLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/parse', {
+      const response = await fetch('https://farbenai-server-service-1087119049852.us-central1.run.app/parse', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -159,7 +159,7 @@ const BotSetting = () => {
     setError(null);
   
     try {
-      const response = await axios.post(`http://localhost:8080/create-bot/`, botSettings, {
+      const response = await axios.post(`https://farbenai-server-service-1087119049852.us-central1.run.app/create-bot/`, botSettings, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"

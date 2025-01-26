@@ -95,7 +95,7 @@ const Login = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/login', {
+      const response = await fetch('https://farbenai-server-service-1087119049852.us-central1.run.app/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ const Login = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/forgetpassword', {
+      const response = await fetch('https://farbenai-server-service-1087119049852.us-central1.run.app/forgetpassword', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ const Login = () => {
   const handleResendOtp = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/forgetpassword', {
+      const response = await fetch('https://farbenai-server-service-1087119049852.us-central1.run.app/forgetpassword', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -189,7 +189,7 @@ const Login = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/resetpassword', {
+        const response = await fetch('https://farbenai-server-service-1087119049852.us-central1.run.app/resetpassword', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

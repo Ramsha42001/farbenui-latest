@@ -31,7 +31,7 @@ function DataPage() {
   const fetchDocuments = async () => {
     if (token) {
       try {
-        const documentsResponse = await axios.get('http://localhost:8080/documents', {
+        const documentsResponse = await axios.get('https://farbenai-server-service-1087119049852.us-central1.run.app/documents', {
           headers: {
             Authorization: `Bearer ${token}`
           }

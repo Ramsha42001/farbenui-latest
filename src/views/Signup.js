@@ -27,7 +27,7 @@ const Signup = () => {
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:8080/signup', {
+            const response = await fetch('https://farbenai-server-service-1087119049852.us-central1.run.app/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

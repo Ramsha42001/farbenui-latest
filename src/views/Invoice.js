@@ -27,17 +27,6 @@ function Invoice() {
   // Ref for dropdown menus
   const dropdownRefs = useRef({});
 
-  const invoiceData = [
-    {
-      id: 1,
-      Sno: 1,
-      FileName: "Contract_Farben_Final", // Added .pdf for download
-      Type: "PDF",
-      Status: "Processed",
-      UploadedAt: "2025-01-01 10:00",
-      LastUpdated: "2025-01-01 10:00",
-    }
-  ];
 
   // Function to close other dropdowns when one is opened
   const closeOtherDropdowns = (currentDocId) => {
@@ -51,7 +40,7 @@ function Invoice() {
   const fetchDocuments = async () => {
     if (token) {
       try {
-        const documentsResponse = await axios.get('http://localhost:8080/documents', {
+        const documentsResponse = await axios.get('https://farbenai-server-service-1087119049852.us-central1.run.app/contract', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -79,6 +68,8 @@ function Invoice() {
   useEffect(() => {
     fetchDocuments();
   }, [token, navigate]);
+
+  console.log(pdfUrls)
 
   useEffect(() => {
     if (userEmail) {
@@ -172,7 +163,7 @@ function Invoice() {
     dispatch(setLoading(true));
     try {
       const response = await axios.post(
-        'http://localhost:8080/upload-pdf/',
+        'https://farbenai-server-service-1087119049852.us-central1.run.app/upload-contract/',
         formData,
         {
           headers: {
@@ -248,7 +239,7 @@ function Invoice() {
 <div className="text-left w-100 my-5">
         <h5 className="font-weight-bold">Contract</h5>
         <div className="my-3">
-          {invoiceData.length === 0 ? (
+          {pdfUrls.length === 0 ? (
             <p className="text-center text-muted">No files uploaded yet.</p>
           ) : (
             <div className="table-responsive" style={{ height: '500px' }}>
@@ -265,23 +256,23 @@ function Invoice() {
                   </tr>
                 </thead>
                 <tbody>
-                  {invoiceData.map((doc, index) => (
+                  {pdfUrls.map((doc, index) => (
                     <tr key={doc.id}>
-                      <td className="align-middle">{doc.Sno}</td>
+                      <td className="align-middle">{index+1}</td>
                       <td className="align-middle" style={{ fontSize: '14px' }}>
-                        {doc.FileName}
+                        {doc.filename.toUpperCase()}
                       </td>
                       <td className="align-middle">
-                        {doc.Type.toUpperCase()}
+                        {doc.filename.split('.').pop().toUpperCase()}
                       </td>
                       <td className="align-middle">
-                        {doc.Status.toUpperCase()}
+                        Processed
                       </td>
                       <td className="align-middle">
-                        {moment(doc.UploadedAt).format('YYYY-MM-DD HH:mm')}
+                        {moment(doc.created_at).format('YYYY-MM-DD HH:mm')}
                       </td>
                       <td className="align-middle">
-                        {moment(doc.LastUpdated).format('YYYY-MM-DD HH:mm')}
+                        {moment(doc.updated_at).format('YYYY-MM-DD HH:mm')}
                       </td>
                       <td className="align-middle">
                         <div
@@ -312,7 +303,7 @@ function Invoice() {
                                 className="dropdown-item"
                                 onClick={() => {
                                   handleDownload(
-                                    'http://localhost:8080/download-pdf/' +
+                                    'https://farbenai-server-service-1087119049852.us-central1.run.app/download-pdf/' +
                                       doc.FileName,
                                     doc.FileName
                                   );
