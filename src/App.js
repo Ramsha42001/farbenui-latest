@@ -35,7 +35,7 @@ function App() {
           <Route path='user' element={<UserAnalytics />} />
           <Route path='performance' element={<PerformanceAnalytics />} />
         </Route>
-        <Route path='/data' element={<Document />}>
+        <Route path='/data' element={<DataPage />}>
           <Route path='documents' element={<Document />} />
           <Route path='invoice' element={<Invoice />} />
           <Route path='approve' element={<Approve />} />

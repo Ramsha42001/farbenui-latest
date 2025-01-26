@@ -22,6 +22,9 @@ const Sidebar = ({ children }) => {
       subItems: [ // Add subItems directly to the Data item
         { path: "/data/documents", name: "Documents", icon: <FaCloudUploadAlt /> },
         { path: "/data/invoice", name: "Invoice", icon: <FaFileInvoiceDollar /> },
+        {
+          path: "/data/approve", name: "Approve", icon: <FaFileInvoiceDollar />
+        }
       ]
     },
     { path: "/bot-list", name: "Create Agent", icon: <FaRocket /> },
