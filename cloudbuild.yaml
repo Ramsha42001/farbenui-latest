@@ -1,8 +1,8 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/reflected-alpha-445708-j6/farbenui', '.']
+  args: ['build', '-t', 'gcr.io/reflected-alpha-445708-j6/farbenui:amd64', '.']
 images:
-- 'gcr.io/reflected-alpha-445708-j6/farbenui'
+- 'gcr.io/reflected-alpha-445708-j6/farbenui:amd64'
 deployments:
 - name: farbenaiui-service
   platform: cloudrun
