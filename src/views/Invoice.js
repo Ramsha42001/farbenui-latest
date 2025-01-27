@@ -134,7 +134,7 @@ function Invoice() {
       dispatch(setLoading(true)); // Set loading state before request
       try {
         const response = await axios.post(
-          'http://localhost:8080/delete-contract',
+          'https://farbenai-server-service-1087119049852.us-central1.run.app/delete-contract',
           { file_name: filename },
           { headers: { Authorization: `Bearer ${token}` } } 
         );
