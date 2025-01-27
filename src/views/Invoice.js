@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createDocument, listDocuments, deleteDocument, setLoading } from '../features/document/documentSlice';
+import { listDocuments, deleteDocument, setLoading } from '../features/document/documentSlice';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import { uploadFileToGCS } from '../utils/uploadFileToGCS';
 import '../styles/DataPage.css';
 import axios from 'axios';
 import moment from 'moment';
@@ -17,24 +16,58 @@ function Invoice() {
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [selectedDocument, setSelectedDocument] = useState(null);
   const [userEmail, setUserEmail] = useState('');
   const [token, setToken] = useState(null);
   const [pdfUrls, setPdfUrls] = useState([]);
   const isLoading = useSelector(state => state.document.isLoading);
-  const [openRows, setOpenRows] = useState({});
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [invoiceData, setInvoiceData] = useState({});
 
   // Ref for dropdown menus
   const dropdownRefs = useRef({});
 
 
-  // Function to close other dropdowns when one is opened
-  const closeOtherDropdowns = (currentDocId) => {
-    Object.keys(openRows).forEach(docId => {
-      if (docId !== currentDocId && openRows[docId]) {
-        setOpenRows(prev => ({ ...prev, [docId]: false }));
+  //post request for generate invoice 
+  const handleGenerateInvoice=async(filename)=>{
+    try {
+      const response = await axios.post(
+        'http://localhost:8080/contract',
+        { file_name: filename },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      //  console.log("Hello")
+      // console.log(response.data.invoice_details)
+      setInvoiceData(response.data.invoice_details)
+      if (response.status === 200) {
+        // Handle successful response
+        console.log('Invoice generated successfully:', response.data);
+        if (window.confirm('Invoice generated successfully. Do you want to proceed to approval?')) {
+          // Navigate to Approve page with invoice data
+          navigate('/data/approve', { 
+            state: { 
+              invoiceDetails: response.data.invoice_details 
+            }
+          });
+        }
+      } else {
+        console.error('Error generating invoice:', response.data);
+        alert(`Error generating invoice: ${response.data?.detail || 'An error occurred'}`);
       }
-    });
+    } catch (error) {
+      console.error('Error generating invoice:', error);
+      alert('An error occurred while generating the invoice.');
+    }
+  }
+
+  const toggleDataSubMenu = (documentId) => {
+    if (activeDropdown === documentId) {
+      // If clicking the same dropdown, close it
+      setActiveDropdown(null);
+    } else {
+      // If clicking a different dropdown, open it
+      setActiveDropdown(documentId);
+    }
   };
 
   const fetchDocuments = async () => {
@@ -46,7 +79,6 @@ function Invoice() {
           }
         });
         setPdfUrls(documentsResponse.data);
-        console.log(pdfUrls)
       } catch (error) {
         console.error('Error fetching documents:', error);
         if (error.response) {
@@ -69,61 +101,58 @@ function Invoice() {
     fetchDocuments();
   }, [token, navigate]);
 
-  console.log(pdfUrls)
-
   useEffect(() => {
     if (userEmail) {
       dispatch(listDocuments(userEmail));
     }
   }, [userEmail, dispatch]);
-
-
-
-  const toggleDataSubMenu = (documentId) => {
-    closeOtherDropdowns(documentId);
-    setOpenRows(prev => ({
-      ...prev,
-      [documentId]: !prev[documentId]
-    }));
-  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      Object.keys(openRows).forEach(docId => {
-        if (
-          dropdownRefs.current[docId] &&
-          !dropdownRefs.current[docId].contains(event.target) &&
-          openRows[docId]
-        ) {
-          setOpenRows(prev => ({ ...prev, [docId]: false }));
-        }
-      });
+      if (activeDropdown && 
+          dropdownRefs.current[activeDropdown] && 
+          !dropdownRefs.current[activeDropdown].contains(event.target)) {
+        setActiveDropdown(null);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [openRows]);
+  }, [activeDropdown]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
+    const storedEmail = localStorage.getItem('email')
     setToken(storedToken);
-    setUserEmail(localStorage.getItem('email'));
+    setUserEmail(storedEmail);
   }, []);
 
-  useEffect(() => {
-    if (userEmail) {
-      dispatch(listDocuments(userEmail));
+  const handleDeleteFile = async (filename) => {
+    console.log(filename)
+    if (window.confirm('Are you sure you want to delete this file?')) {
+      dispatch(setLoading(true)); // Set loading state before request
+      try {
+        const response = await axios.post(
+          'http://localhost:8080/delete-contract',
+          { file_name: filename },
+          { headers: { Authorization: `Bearer ${token}` } } 
+        );
+
+        if (response.status === 200) {
+          fetchDocuments(); // Refresh the document list
+          alert("File deleted successfully");
+        } else {
+          console.error('Error deleting file:', response.data);
+          alert(`Error deleting file: ${response.data?.detail || "An error occurred"}`); 
+        }
+      } catch (error) {
+        console.error('Error deleting file:', error);
+        alert("An error occurred while deleting the file.");
+      } finally {
+        dispatch(setLoading(false)); // Ensure loading state is reset
+      }
     }
-  }, [userEmail, dispatch]);
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const handleDeleteFile = async (documentId) => {
-    await dispatch(deleteDocument(documentId));
-    dispatch(listDocuments(userEmail));
   };
 
   const handleDownload = (url, filename) => {
@@ -145,6 +174,9 @@ function Invoice() {
     setShowModal(!showModal);
   };
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -190,7 +222,7 @@ function Invoice() {
 
   return (
     <>
-        <div>
+      <div>
         <Header />
       </div>
       <div className="">
@@ -236,105 +268,99 @@ function Invoice() {
               </div>
             )}
 
-<div className="text-left w-100 my-5">
-        <h5 className="font-weight-bold">Contract</h5>
-        <div className="my-3">
-          {pdfUrls.length === 0 ? (
-            <p className="text-center text-muted">No files uploaded yet.</p>
-          ) : (
-            <div className="table-responsive" style={{ height: '500px' }}>
-              <table className="table table-hover" style={{ fontSize: '14px' }}>
-                <thead className="thead-light">
-                  <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col">File Name</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Uploaded At</th>
-                    <th scope="col">Last Updated</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pdfUrls.map((doc, index) => (
-                    <tr key={doc.id}>
-                      <td className="align-middle">{index+1}</td>
-                      <td className="align-middle" style={{ fontSize: '14px' }}>
-                        {doc.filename.toUpperCase()}
-                      </td>
-                      <td className="align-middle">
-                        {doc.filename.split('.').pop().toUpperCase()}
-                      </td>
-                      <td className="align-middle">
-                        Processed
-                      </td>
-                      <td className="align-middle">
-                        {moment(doc.created_at).format('YYYY-MM-DD HH:mm')}
-                      </td>
-                      <td className="align-middle">
-                        {moment(doc.updated_at).format('YYYY-MM-DD HH:mm')}
-                      </td>
-                      <td className="align-middle">
-                        <div
-                          className="btn-group"
-                          ref={el => (dropdownRefs.current[doc.id] = el)}
-                        >
-                          <div
-                            onClick={() => toggleDataSubMenu(doc.id)}
-                            style={{ cursor: 'pointer' }}
-                          >
-                            {openRows[doc.id] ? (
-                              <IoIosArrowUp />
-                            ) : (
-                              <IoIosArrowDown />
-                            )}
-                          </div>
-                          {/* Dropdown Menu */}
-                          {openRows[doc.id] && (
-                            <div
-                              className="dropdown-menu show"
-                              style={{
-                                position: 'absolute',
-                                left: '-100px',
-                                top: '25px',
-                              }}
-                            >
-                              <button
-                                className="dropdown-item"
-                                onClick={() => {
-                                  handleDownload(
-                                    'https://farbenai-server-service-1087119049852.us-central1.run.app/download-pdf/' +
-                                      doc.FileName,
-                                    doc.FileName
-                                  );
-                                  toggleDataSubMenu(doc.id);
-                                }}
+            <div className="text-left w-100 my-5">
+              <h5 className="font-weight-bold">Contract</h5>
+              <div className="my-3">
+                {pdfUrls.length === 0 ? (
+                  <p className="text-center text-muted">No files uploaded yet.</p>
+                ) : (
+                  <div className="table-responsive" style={{ height: '500px' }}>
+                    <table className="table table-hover" style={{ fontSize: '14px' }}>
+                      <thead className="thead-light">
+                        <tr>
+                          <th scope="col">S.No</th>
+                          <th scope="col">File Name</th>
+                          <th scope="col">Type</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Uploaded At</th>
+                          <th scope="col">Last Updated</th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {pdfUrls.map((doc, index) => (
+                          <tr key={doc.document_id}>
+                            <td className="align-middle">{index + 1}</td>
+                            <td className="align-middle" style={{ fontSize: '14px' }}>
+                              {doc.filename.toUpperCase()}
+                            </td>
+                            <td className="align-middle">
+                              {doc.filename.split('.').pop().toUpperCase()}
+                            </td>
+                            <td className="align-middle">
+                              Processed
+                            </td>
+                            <td className="align-middle">
+                              {moment(doc.created_at).format('YYYY-MM-DD HH:mm')}
+                            </td>
+                            <td className="align-middle">
+                              {moment(doc.updated_at).format('YYYY-MM-DD HH:mm')}
+                            </td>
+                            <td className="align-middle">
+                              <div
+                                className="btn-group"
+                                ref={el => (dropdownRefs.current[doc.document_id] = el)}
                               >
-                                <FaFileInvoice className="icon-space" /> Generate Invoice
-                              </button>
-                              <button
-                                className="dropdown-item"
-                                onClick={() => {
-                                  handleDeleteFile(doc.id);
-                                  toggleDataSubMenu(doc.id);
-                                }}
-                              >
-                                <RiDeleteBin6Line className="icon-space" />{" "}
-                                Delete
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                                <div
+                                  onClick={() => toggleDataSubMenu(doc.document_id)}
+                                  style={{ cursor: 'pointer' }}
+                                >
+                                  {activeDropdown === doc.document_id ? (
+                                    <IoIosArrowUp />
+                                  ) : (
+                                    <IoIosArrowDown />
+                                  )}
+                                </div>
+                                {/* Dropdown Menu */}
+                                {activeDropdown === doc.document_id && (
+                                  <div
+                                    className="dropdown-menu show"
+                                    style={{
+                                      position: 'absolute',
+                                      left: '-100px',
+                                      top: '25px',
+                                    }}
+                                  >
+                                    <button
+                                      className="dropdown-item"
+                                      onClick={() => {
+                                        setActiveDropdown(null);
+                                        handleGenerateInvoice(doc.filename)
+                                      }}
+                                    >
+                                      <FaFileInvoice className="icon-space" /> Generate Invoice
+                                    </button>
+                                    <button
+                                      className="dropdown-item"
+                                      onClick={() => {
+                                        handleDeleteFile(doc.document_id);
+                                      }}
+                                    >
+                                      <RiDeleteBin6Line className="icon-space" />{" "}
+                                      Delete
+                                    </button>
+                                  </div>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
             </div>
-          )}
-        </div>
-      </div>
-
           </div>
         </div>
       </div>
@@ -342,4 +368,4 @@ function Invoice() {
   );
 }
 
-export default Invoice;
+export default Invoice; 

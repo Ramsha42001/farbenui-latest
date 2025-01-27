@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import Login from './views/Login';
 import HomePage from './views/HomePage';
 import Dashboard from './views/Dashboard';
@@ -36,6 +37,7 @@ function App() {
           <Route path='performance' element={<PerformanceAnalytics />} />
         </Route>
         <Route path='/data' element={<DataPage />}>
+          <Route index element={<Navigate to="/data/documents" replace />} />
           <Route path='documents' element={<Document />} />
           <Route path='invoice' element={<Invoice />} />
           <Route path='approve' element={<Approve />} />

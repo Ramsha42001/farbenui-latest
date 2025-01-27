@@ -70,9 +70,31 @@ function Documents() {
     setFile(e.target.files[0]);
   };
 
-  const handleDeleteFile = async (documentId) => {
-    await dispatch(deleteDocument(documentId));
-    dispatch(listDocuments(userEmail));
+  const handleDeleteFile = async (filename) => {
+    console.log(filename)
+    if (window.confirm('Are you sure you want to delete this file?')) {
+      dispatch(setLoading(true)); // Set loading state before request
+      try {
+        const response = await axios.post(
+          'http://localhost:8080/delete-doc',
+          { file_name: filename },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if (response.status === 200) {
+          fetchDocuments(); // Refresh the document list
+          alert("File deleted successfully");
+        } else {
+          console.error('Error deleting file:', response.data);
+          alert(`Error deleting file: ${response.data?.detail || "An error occurred"}`); 
+        }
+      } catch (error) {
+        console.error('Error deleting file:', error);
+        alert("An error occurred while deleting the file.");
+      } finally {
+        dispatch(setLoading(false)); // Ensure loading state is reset
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -170,7 +192,7 @@ function Documents() {
             )}
 
             <div className="text-left w-100 my-5">
-              <h5 className="font-weight-bold">Uploaded Files</h5>
+              <h5 className="font-weight-bold">Uploaded Documents</h5>
               <div className="my-3">
                 {pdfUrls.length === 0 ? (
                   <p className="text-center text-muted">No files uploaded yet.</p>
@@ -193,7 +215,7 @@ function Documents() {
                           <tr key={doc.document_id}>
                             <td className="align-middle">{index + 1}</td>
                             <td className="align-middle" style={{ fontSize: '14px' }}>
-                              {doc.filename.toUpperCase()}
+                              {doc.filename}
                             </td>
                             <td className="align-middle">
                               {doc.filename.split('.').pop().toUpperCase()}
@@ -215,7 +237,7 @@ function Documents() {
                                 <button
                                   className="btn btn-sm"
                                   style={{ color: '#EB5A3C', borderColor: '#EB5A3C' }}
-                                  onClick={() => handleDeleteFile(doc.document_id)}
+                                  onClick={() => handleDeleteFile(doc.filename)}
                                 >
                                   <i className="fas fa-trash-alt"></i> Delete
                                 </button>
