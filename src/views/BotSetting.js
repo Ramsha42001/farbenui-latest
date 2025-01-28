@@ -88,8 +88,7 @@ const BotSetting = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          email: userEmail,
-          file: selectedDocument.filename,
+          file_name: selectedDocument.filename,
           action: "parse"
          }),
       });
@@ -118,8 +117,7 @@ const BotSetting = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          email: userEmail,
-          file: selectedDocument.filename,
+          file_name: selectedDocument.filename,
           action: "embeddings"
          }),
       });
