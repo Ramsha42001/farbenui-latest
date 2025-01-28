@@ -31,7 +31,7 @@ function Invoice() {
   const handleGenerateInvoice=async(filename)=>{
     try {
       const response = await axios.post(
-        'http://localhost:8080/contract',
+        'https://farbenai-server-service-1087119049852.us-central1.run.app/contract',
         { file_name: filename },
         { headers: { Authorization: `Bearer ${token}` } }
       );
