@@ -248,8 +248,8 @@ const BotSetting = () => {
                         required
                       >
                         <option value="">Select a model</option>
-                        <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
-                        <option value="gpt-4">gpt-4</option>
+                        <option value="gemini-1.5-flash">gemini-1.5-flash</option>
+                        <option value="gemini-1.5-pro">gemini-1.5-pro</option>
                         {/* Add more models here as needed */}
                       </select>
                     </div>
