@@ -127,11 +127,7 @@ const Header = () => {
                                 <Link className="button-header btn btn-outline-primary" style={{backgroundColor: '', borderWidth: '2px',borderRadius: '30px'}} to="/login">Login</Link>
                                 <Link className="button-header btn btn-primary" style={{backgroundColor: '#EB5A3C',borderRadius: '30px'}} to="/signup">Signup</Link>
                             </div>
-                        ) : (
-                            <div className="d-flex align-items-center right-container">
-                                <Link className="button-header btn btn-primary" to="/" style={{backgroundColor: '#EB5A3C'}}>Logout</Link>
-                            </div>
-                        )}
+                        ) :""}
                         {isLoggedIn && (
                             <div className="d-flex align-items-center right-container">
                                 <div className="message-profile-container">
